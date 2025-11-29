@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather Dashboard — Khaki Forest</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-dot"></div>
+        <div class="brand-text">Weather</div>
+      </div>
+
+      <div class="controls">
+        <div class="search-area">
+          <div class="search" id="searchWrap">
+            <input id="searchInput" placeholder="Cari kota — mis. Bandung" spellcheck="false" autocomplete="off" />
+            <div id="suggestions" class="suggestions"></div>
+          </div>
+
+          <input id="filterInput" class="filter-input" placeholder="Negara / Kode (opsional)" title="Masukkan kode negara seperti ID, US atau nama negara" />
+        </div>
+
+        <div class="action-row">
+          <button id="refreshBtn" class="btn icon" title="Refresh">⟳</button>
+
+          <div class="segmented" role="tablist" aria-label="Unit suhu">
+            <button id="unitC" class="seg-btn" data-unit="metric">°C</button>
+            <button id="unitF" class="seg-btn" data-unit="imperial">°F</button>
+          </div>
+
+          <button id="themeToggle" class="btn icon" title="Toggle theme">🌓</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-grid">
+      <section class="col-left">
+        <div class="card glass current-card" id="currentCard">
+          <div class="current-top">
+            <div>
+              <h2 id="locationName">—</h2>
+              <div id="timestamp" class="ts">—</div>
+            </div>
+
+            <div class="current-main">
+              <img id="weatherIcon" alt="weather" />
+              <div class="temp-block">
+                <div class="temp" id="tempValue">--</div>
+                <div class="desc" id="weatherDesc">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="current-meta">
+            <div class="meta-item">
+              <div class="meta-title">Kelembapan</div>
+              <div id="humidity" class="meta-value">--%</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-title">Angin</div>
+              <div id="wind" class="meta-value">--</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-title">Tekanan</div>
+              <div id="pressure" class="meta-value">-- hPa</div>
+            </div>
+          </div>
+
+          <div class="current-actions">
+            <div>
+              <button id="saveFavBtn" class="btn primary">☆ Simpan ke Favorit</button>
+              <button id="openFavsBtn" class="btn">Favorit</button>
+            </div>
+            <div id="currentLoading" class="loading small hidden">Memuat...</div>
+          </div>
+        </div>
+
+        <div class="card glass forecast-card" id="forecastCard">
+          <h3>Prakiraan 5 Hari</h3>
+          <div id="forecastLoading" class="loading">Memuat prakiraan...</div>
+          <div id="forecastGrid" class="forecast-grid hidden"></div>
+        </div>
+      </section>
+
+      <aside class="col-right">
+        <div class="card glass favorites-card">
+          <h4>Kota Favorit</h4>
+          <ul id="favoritesList" class="favorites-list">
+            <li class="muted">Belum ada favorit</li>
+          </ul>
+        </div>
+
+        <div class="card glass info-card">
+          <h4>Status Sistem</h4>
+          <div class="status-row">
+            <div><span class="dot online" id="apiStatus"></span> API Online</div>
+            <div><span class="dot" id="autoStatus"></span> Auto update (5 menit)</div>
+          </div>
+
+          <h4>Aktivitas</h4>
+          <div id="activityLog" class="log">
+            <div class="muted">Belum ada aktivitas</div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
